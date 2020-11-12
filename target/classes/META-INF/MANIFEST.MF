@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: voduy
+Build-Jdk: 14.0.2
+Implementation-Title: TestAPI
+Implementation-Version: 1.0
+Implementation-Vendor-Id: poly.voduyle
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-URL: http://projects.spring.io/spring-boot/TestAPI/
+Created-By: Maven Integration for Eclipse
+
