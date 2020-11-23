@@ -1,0 +1,180 @@
+package com.dichvudulich.entity;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+@Entity
+@Table(name = "dattour")
+public class Dattour implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@NotBlank
+	@Size(max = 50)
+	private String tenloaitour;
+	@NotBlank
+	@Size(max = 100)
+	private String hinhanh;
+	@NotBlank
+	private Date thoigiankhoihanh;
+	@NotBlank
+	private Date thoigiandat;
+	@NotBlank
+	private Integer soluongkhach;
+	@NotBlank
+	@Size(max = 50)
+	private String tenloaidichvu;
+	@NotBlank
+	@Size(max = 100)
+	private String tenkhachhang;
+	@NotBlank
+	@Size(max = 255)
+	private String ghichu;
+	@NotBlank
+	private Integer tongtien;
+	@NotBlank
+	private Boolean trangthai;
+	
+	@OneToOne
+	@JoinColumn(name = "id_khachhang")
+	private KhachhangEntity khachhang;
+
+	public Dattour() {
+		super();
+	}
+
+	public Dattour(Long id, @Size(max = 50) String tenloaitour, @Size(max = 100) String hinhanh, Date thoigiankhoihanh,
+			Date thoigiandat, Integer soluongkhach, @Size(max = 50) String tenloaidichvu,
+			@Size(max = 100) String tenkhachhang, @Size(max = 255) String ghichu, Integer tongtien, Boolean trangthai,
+			KhachhangEntity khachhang) {
+		super();
+		this.id = id;
+		this.tenloaitour = tenloaitour;
+		this.hinhanh = hinhanh;
+		this.thoigiankhoihanh = thoigiankhoihanh;
+		this.thoigiandat = thoigiandat;
+		this.soluongkhach = soluongkhach;
+		this.tenloaidichvu = tenloaidichvu;
+		this.tenkhachhang = tenkhachhang;
+		this.ghichu = ghichu;
+		this.tongtien = tongtien;
+		this.trangthai = trangthai;
+		this.khachhang = khachhang;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getTenloaitour() {
+		return tenloaitour;
+	}
+
+	public void setTenloaitour(String tenloaitour) {
+		this.tenloaitour = tenloaitour;
+	}
+
+	public String getHinhanh() {
+		return hinhanh;
+	}
+
+	public void setHinhanh(String hinhanh) {
+		this.hinhanh = hinhanh;
+	}
+
+	public Date getThoigiankhoihanh() {
+		return thoigiankhoihanh;
+	}
+
+	public void setThoigiankhoihanh(Date thoigiankhoihanh) {
+		this.thoigiankhoihanh = thoigiankhoihanh;
+	}
+
+	public Date getThoigiandat() {
+		return thoigiandat;
+	}
+
+	public void setThoigiandat(Date thoigiandat) {
+		this.thoigiandat = thoigiandat;
+	}
+
+	public Integer getSoluongkhach() {
+		return soluongkhach;
+	}
+
+	public void setSoluongkhach(Integer soluongkhach) {
+		this.soluongkhach = soluongkhach;
+	}
+
+	public String getTenloaidichvu() {
+		return tenloaidichvu;
+	}
+
+	public void setTenloaidichvu(String tenloaidichvu) {
+		this.tenloaidichvu = tenloaidichvu;
+	}
+
+	public String getTenkhachhang() {
+		return tenkhachhang;
+	}
+
+	public void setTenkhachhang(String tenkhachhang) {
+		this.tenkhachhang = tenkhachhang;
+	}
+
+	public String getGhichu() {
+		return ghichu;
+	}
+
+	public void setGhichu(String ghichu) {
+		this.ghichu = ghichu;
+	}
+
+	public Integer getTongtien() {
+		return tongtien;
+	}
+
+	public void setTongtien(Integer tongtien) {
+		this.tongtien = tongtien;
+	}
+
+	public Boolean getTrangthai() {
+		return trangthai;
+	}
+
+	public void setTrangthai(Boolean trangthai) {
+		this.trangthai = trangthai;
+	}
+
+	public KhachhangEntity getKhachhang() {
+		return khachhang;
+	}
+
+	public void setKhachhang(KhachhangEntity khachhang) {
+		this.khachhang = khachhang;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
+}
