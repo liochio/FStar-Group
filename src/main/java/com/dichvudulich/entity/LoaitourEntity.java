@@ -30,7 +30,7 @@ public class LoaitourEntity implements Serializable {
 	@Size(max = 50)
 	private String tenloaitour;
 	@NotBlank
-	private Boolean trangthai;
+	private String trangthai;
 	
 	@OneToMany(mappedBy = "loaitour")
 	private List<TourEntity> entities = new ArrayList<>();
@@ -39,13 +39,13 @@ public class LoaitourEntity implements Serializable {
 		super();
 	}
 
-	public LoaitourEntity(Long id, @Size(max = 10) String maloaitour, @Size(max = 50) String tenloaitour,
-			Boolean trangthai) {
+	public LoaitourEntity(@Size(max = 10) String maloaitour, @Size(max = 50) String tenloaitour, String trangthai) {
 		super();
 		this.id = id;
 		this.maloaitour = maloaitour;
 		this.tenloaitour = tenloaitour;
 		this.trangthai = trangthai;
+		this.entities = entities;
 	}
 
 	public Long getId() {
@@ -72,11 +72,11 @@ public class LoaitourEntity implements Serializable {
 		this.tenloaitour = tenloaitour;
 	}
 
-	public Boolean getTrangthai() {
+	public String getTrangthai() {
 		return trangthai;
 	}
 
-	public void setTrangthai(Boolean trangthai) {
+	public void setTrangthai(String trangthai) {
 		this.trangthai = trangthai;
 	}
 
