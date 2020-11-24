@@ -12,8 +12,7 @@ public class LoaiTourEntityRequest {
 	@NotBlank
 	@Size(max = 50)
 	private String tenloaitour;
-	@NotBlank
-	private String trangthai;
+	private Boolean trangthai;
 
 	public String getMaloaitour() {
 		return maloaitour;
@@ -31,12 +30,12 @@ public class LoaiTourEntityRequest {
 		this.tenloaitour = tenloaitour;
 	}
 
-	public String getTrangthai() {
+	public Boolean getTrangthai() {
 		return trangthai;
 	}
 
-	public void setTrangthai(String trangthai) {
-		this.trangthai = trangthai;
+	public void setTrangthai(boolean b) {
+		this.trangthai = b;
 	}
 
 }

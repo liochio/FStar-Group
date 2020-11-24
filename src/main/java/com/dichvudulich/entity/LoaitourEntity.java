@@ -19,7 +19,7 @@ import org.hibernate.validator.constraints.NotBlank;
 public class LoaitourEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -29,9 +29,8 @@ public class LoaitourEntity implements Serializable {
 	@NotBlank
 	@Size(max = 50)
 	private String tenloaitour;
-	@NotBlank
-	private String trangthai;
-	
+	private Boolean trangthai;
+
 	@OneToMany(mappedBy = "loaitour")
 	private List<TourEntity> entities = new ArrayList<>();
 
@@ -39,7 +38,7 @@ public class LoaitourEntity implements Serializable {
 		super();
 	}
 
-	public LoaitourEntity(@Size(max = 10) String maloaitour, @Size(max = 50) String tenloaitour, String trangthai) {
+	public LoaitourEntity(@Size(max = 10) String maloaitour, @Size(max = 50) String tenloaitour, Boolean trangthai) {
 		super();
 		this.id = id;
 		this.maloaitour = maloaitour;
@@ -72,11 +71,11 @@ public class LoaitourEntity implements Serializable {
 		this.tenloaitour = tenloaitour;
 	}
 
-	public String getTrangthai() {
+	public Boolean getTrangthai() {
 		return trangthai;
 	}
 
-	public void setTrangthai(String trangthai) {
+	public void setTrangthai(Boolean trangthai) {
 		this.trangthai = trangthai;
 	}
 

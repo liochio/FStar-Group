@@ -1,5 +1,6 @@
 package com.dichvudulich.api;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,23 +16,23 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dichvudulich.entity.LoaitourEntity;
+import com.dichvudulich.entity.TourEntity;
 import com.dichvudulich.repository.LoaiTourRepository;
 import com.dichvudulich.repository.RolesRepository;
+import com.dichvudulich.repository.TourRepository;
 import com.dichvudulich.repository.UsersRepository;
-import com.dichvudulich.request.LoaiTourEntityRequest;
+import com.dichvudulich.request.TourEntityRequest;
 import com.dichvudulich.response.MessageResponse;
 import com.dichvudulich.ultil.JwtUtils;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
-public class LoaiTourController {
+public class TourController {
 
 	@Autowired
 	AuthenticationManager authenticationManager;
@@ -51,45 +52,40 @@ public class LoaiTourController {
 	@Autowired
 	JwtUtils jwtUtils;
 
-	@GetMapping("/loaitour/{id}")
-	public ResponseEntity<Optional<LoaitourEntity>> getEmployeeById(@PathVariable Long id) {
-		Optional<LoaitourEntity> user = loaiTourRepository.findById(id);
-		return ResponseEntity.ok(user);
+	@Autowired
+	TourRepository tourRepository;
+
+	@GetMapping("/tour/{id}")
+	public ResponseEntity<Optional<TourEntity>> getTourById(@PathVariable Long id) {
+		Optional<TourEntity> tourEntity = tourRepository.findById(id);
+		return ResponseEntity.ok(tourEntity);
 	}
 
-	@GetMapping(value = "/loaitour")
-	public List<LoaitourEntity> findAll() {
+	@GetMapping(value = "/tour")
+	public List<TourEntity> findAll() {
 
-		return (List<LoaitourEntity>) this.loaiTourRepository.findAll();
+		return (List<TourEntity>) this.tourRepository.findAll();
 
 	}
 
-	@PostMapping("/loaitour")
-	public ResponseEntity<?> createLoaitour(@Valid @RequestBody LoaiTourEntityRequest loaiTourEntityRequest) {
+	@PostMapping("/tour")
+	public ResponseEntity<?> createTour(@Valid @RequestBody TourEntityRequest tourEntityRequest) {
 
-		LoaitourEntity loaitour = new LoaitourEntity(loaiTourEntityRequest.getMaloaitour(),
-				loaiTourEntityRequest.getTenloaitour(), loaiTourEntityRequest.getTrangthai());
-		loaitour.setTrangthai(true);
-		loaiTourRepository.save(loaitour);
+		TourEntity tourEntity = new TourEntity(tourEntityRequest.getMota(), tourEntityRequest.getMotachitiet(),
+				tourEntityRequest.getHinhanh(), tourEntityRequest.getGia(), tourEntityRequest.getDiadiem(),
+				tourEntityRequest.getThoigiankhoihanh(), tourEntityRequest.getSoluongkhach(),
+				tourEntityRequest.getTrangthai());
+		tourEntity.setThoigiankhoihanh(new Date());
+		tourEntity.setTrangthai(true);
+		tourRepository.save(tourEntity);
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
-
-	@PutMapping("/loaitour/{id}")
-	public ResponseEntity<LoaitourEntity> updateTutorial(@PathVariable("id") long id,
-			@RequestBody LoaitourEntity tutorial) {
-		LoaitourEntity entity = loaiTourRepository.findById(id);
-		entity.setMaloaitour(tutorial.getMaloaitour());
-		entity.setTenloaitour(tutorial.getTenloaitour());
-		entity.setTrangthai(tutorial.getTrangthai());
-		return new ResponseEntity<>(loaiTourRepository.save(entity), HttpStatus.OK);
-
-	}
-
-	@DeleteMapping("/loaitour/{id}")
-	public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
+	
+	@DeleteMapping("/tour/{id}")
+	public ResponseEntity<HttpStatus> deleteTour(@PathVariable("id") long id) {
 		try {
-			loaiTourRepository.deleteById(id);
+			tourRepository.deleteById(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
