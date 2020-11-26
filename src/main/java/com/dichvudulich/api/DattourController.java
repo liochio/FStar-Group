@@ -2,6 +2,7 @@ package com.dichvudulich.api;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -11,6 +12,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,6 +51,12 @@ public class DattourController {
 
 		return (List<Dattour>) this.dattourRepository.findAll();
 
+	}
+	
+	@GetMapping("/dattour/{id}")
+	public ResponseEntity<Optional<Dattour>> getTourById(@PathVariable Long id) {
+		Optional<TourEntity> tourEntity = dattourRepository.findById(id);
+		return ResponseEntity.ok(tourEntity);
 	}
 
 	@PostMapping("/dattour")
