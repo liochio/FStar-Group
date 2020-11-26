@@ -1,6 +1,7 @@
 package com.dichvudulich.api;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,12 +43,25 @@ public class DattourController {
 
 	@Autowired
 	JwtUtils jwtUtils;
-	
+
+	@GetMapping(value = "/dattour")
+	public List<Dattour> findAll() {
+
+		return (List<Dattour>) this.dattourRepository.findAll();
+
+	}
+
 	@PostMapping("/dattour")
 	public ResponseEntity<?> createDattour(@Valid @RequestBody DattourEntityRequest dattourEntityRequest) {
-		Dattour tourEntity = new Dattour(
-				dattourEntityRequest.getHinhanh());
+		TourEntity tour = new TourEntity();
+		Dattour tourEntity = new Dattour(dattourEntityRequest.getTenloaitour(), dattourEntityRequest.getHinhanh(),
+				dattourEntityRequest.getThoigiankhoihanh(), dattourEntityRequest.getThoigiandat(),
+				dattourEntityRequest.getSoluongkhach(), dattourEntityRequest.getTenloaidichvu(),
+				dattourEntityRequest.getTenkhachhang(), dattourEntityRequest.getGhichu(),
+				dattourEntityRequest.getTongtien(), dattourEntityRequest.getTrangthai());
+		tourEntity.setSoluongkhach(tour.getSoluongkhach());
 		tourEntity.setThoigiankhoihanh(new Date());
+		tourEntity.setThoigiandat(new Date());
 		tourEntity.setTrangthai(true);
 		dattourRepository.save(tourEntity);
 

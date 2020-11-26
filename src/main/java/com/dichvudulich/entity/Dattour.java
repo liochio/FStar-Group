@@ -47,8 +47,7 @@ public class Dattour implements Serializable {
 
 	public Dattour(@Size(max = 50) String tenloaitour, @Size(max = 100) String hinhanh, Date thoigiankhoihanh,
 			Date thoigiandat, Integer soluongkhach, @Size(max = 50) String tenloaidichvu,
-			@Size(max = 100) String tenkhachhang, @Size(max = 255) String ghichu, Integer tongtien, Boolean trangthai,
-			KhachhangEntity khachhang) {
+			@Size(max = 100) String tenkhachhang, @Size(max = 255) String ghichu, Integer tongtien, Boolean trangthai) {
 		super();
 		this.tenloaitour = tenloaitour;
 		this.hinhanh = hinhanh;
@@ -60,7 +59,6 @@ public class Dattour implements Serializable {
 		this.ghichu = ghichu;
 		this.tongtien = tongtien;
 		this.trangthai = trangthai;
-		this.khachhang = khachhang;
 	}
 
 	public Long getId() {
