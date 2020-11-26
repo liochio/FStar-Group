@@ -29,7 +29,6 @@ public class LoaitintucEntity implements Serializable {
 	@NotBlank
 	@Size(max = 50)
 	private String tenloaitintuc;
-	@NotBlank
 	private Boolean trangthai;
 
 	@OneToMany(mappedBy = "loaitintuc")
@@ -39,10 +38,9 @@ public class LoaitintucEntity implements Serializable {
 		super();
 	}
 
-	public LoaitintucEntity(Long id, @Size(max = 10) String maloaitintuc, @Size(max = 255) String tenloaitintuc,
+	public LoaitintucEntity(@Size(max = 10) String maloaitintuc, @Size(max = 255) String tenloaitintuc,
 			Boolean trangthai) {
 		super();
-		this.id = id;
 		this.maloaitintuc = maloaitintuc;
 		this.tenloaitintuc = tenloaitintuc;
 		this.trangthai = trangthai;

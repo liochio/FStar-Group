@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -70,7 +71,6 @@ public class TourController {
 
 	@PostMapping("/tour")
 	public ResponseEntity<?> createTour(@Valid @RequestBody TourEntityRequest tourEntityRequest) {
-
 		TourEntity tourEntity = new TourEntity(tourEntityRequest.getMota(), tourEntityRequest.getMotachitiet(),
 				tourEntityRequest.getHinhanh(), tourEntityRequest.getGia(), tourEntityRequest.getDiadiem(),
 				tourEntityRequest.getThoigiankhoihanh(), tourEntityRequest.getSoluongkhach(),
@@ -81,7 +81,22 @@ public class TourController {
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
-	
+
+	@PutMapping("/tour/{id}")
+	public ResponseEntity<TourEntity> updateTour(@PathVariable("id") long id, @RequestBody TourEntity tutorial) {
+		TourEntity entity = tourRepository.findById(id);
+		entity.setMota(tutorial.getMota());
+		entity.setMota(tutorial.getMotachitiet());
+		entity.setHinhanh(tutorial.getHinhanh());
+		entity.setGia(tutorial.getGia());
+		entity.setDiadiem(tutorial.getDiadiem());
+		entity.setThoigiankhoihanh(tutorial.getThoigiankhoihanh());
+		entity.setSoluongkhach(tutorial.getSoluongkhach());
+		entity.setTrangthai(tutorial.getTrangthai());
+		return new ResponseEntity<>(tourRepository.save(entity), HttpStatus.OK);
+
+	}
+
 	@DeleteMapping("/tour/{id}")
 	public ResponseEntity<HttpStatus> deleteTour(@PathVariable("id") long id) {
 		try {
