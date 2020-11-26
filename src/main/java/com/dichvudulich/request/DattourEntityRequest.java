@@ -1,26 +1,11 @@
-package com.dichvudulich.entity;
+package com.dichvudulich.request;
 
-import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-@Entity
-@Table(name = "dattour")
-public class Dattour implements Serializable {
+public class DattourEntityRequest {
 
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	@Size(max = 50)
 	private String tenloaitour;
 	@Size(max = 100)
@@ -36,40 +21,6 @@ public class Dattour implements Serializable {
 	private String ghichu;
 	private Integer tongtien;
 	private Boolean trangthai;
-	
-	@OneToOne
-	@JoinColumn(name = "id_khachhang")
-	private KhachhangEntity khachhang;
-
-	public Dattour() {
-		super();
-	}
-
-	public Dattour(@Size(max = 50) String tenloaitour, @Size(max = 100) String hinhanh, Date thoigiankhoihanh,
-			Date thoigiandat, Integer soluongkhach, @Size(max = 50) String tenloaidichvu,
-			@Size(max = 100) String tenkhachhang, @Size(max = 255) String ghichu, Integer tongtien, Boolean trangthai,
-			KhachhangEntity khachhang) {
-		super();
-		this.tenloaitour = tenloaitour;
-		this.hinhanh = hinhanh;
-		this.thoigiankhoihanh = thoigiankhoihanh;
-		this.thoigiandat = thoigiandat;
-		this.soluongkhach = soluongkhach;
-		this.tenloaidichvu = tenloaidichvu;
-		this.tenkhachhang = tenkhachhang;
-		this.ghichu = ghichu;
-		this.tongtien = tongtien;
-		this.trangthai = trangthai;
-		this.khachhang = khachhang;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getTenloaitour() {
 		return tenloaitour;
@@ -151,17 +102,4 @@ public class Dattour implements Serializable {
 		this.trangthai = trangthai;
 	}
 
-	public KhachhangEntity getKhachhang() {
-		return khachhang;
-	}
-
-	public void setKhachhang(KhachhangEntity khachhang) {
-		this.khachhang = khachhang;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	
 }
