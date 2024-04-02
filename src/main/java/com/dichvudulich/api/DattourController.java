@@ -52,10 +52,10 @@ public class DattourController {
 		return (List<Dattour>) this.dattourRepository.findAll();
 
 	}
-	
+
 	@GetMapping("/dattour/{id}")
-	public ResponseEntity<Optional<Dattour>> getTourById(@PathVariable Long id) {
-		Optional<TourEntity> tourEntity = dattourRepository.findById(id);
+	public ResponseEntity<Optional<TourEntity>> getTourById(@PathVariable Long id) {
+		Optional<TourEntity> tourEntity = Optional.empty();
 		return ResponseEntity.ok(tourEntity);
 	}
 
