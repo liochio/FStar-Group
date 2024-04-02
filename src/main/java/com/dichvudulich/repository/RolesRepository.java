@@ -9,6 +9,6 @@ import com.dichvudulich.entity.RolesEntity;
 
 
 
-public interface RolesRepository extends JpaRepository<RolesEntity, Long> {
+public interface RolesRepository extends JpaRepository<RolesEntity, Integer> {
 	Optional<RolesEntity> findByName(ERole name);
 }
